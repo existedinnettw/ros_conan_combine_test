@@ -18,6 +18,9 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
+#include <zlib.h>
+
+
 using std::placeholders::_1;
 
 class MinimalSubscriber : public rclcpp::Node
@@ -40,6 +43,7 @@ private:
 
 int main(int argc, char * argv[])
 {
+  printf("ZLIB VERSION: %s\n", zlibVersion());
   rclcpp::init(argc, argv);
   rclcpp::spin(std::make_shared<MinimalSubscriber>());
   rclcpp::shutdown();

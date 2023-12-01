@@ -13,8 +13,9 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(ZLIB REQUIRED)
 
-add_executable(talker publisher_member_function.cpp)
+add_executable(talker src/publisher_member_function.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
 # target_link_libraries(talker rclcpp std_msgs)
 
@@ -22,8 +23,9 @@ ament_target_dependencies(talker rclcpp std_msgs)
 #   talker
 #   DESTINATION lib/${PROJECT_NAME})
 
-add_executable(listener subscriber_member_function.cpp)
+add_executable(listener src/subscriber_member_function.cpp)
 ament_target_dependencies(listener rclcpp std_msgs)
+target_link_libraries(listener ZLIB::ZLIB)
 
 install(TARGETS
   talker
